@@ -1,0 +1,72 @@
+.navbar{
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 80px;
+    margin-inline: 10px;
+    margin-top: 5px;
+    border-radius: 16px;
+    padding: 0.5rem;
+}
+.navbar-brand{
+    font-weight: 700;
+    font-size: 2rem;
+    color: #531294;
+    transition: 0.3s color;
+}
+
+.contact-button{
+    background-color: #531294;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: 0.3s background-color;
+}
+
+.contact-button:hover{
+    background-color: #2f0476;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-toggler{
+    border: none;
+    font-size: 1.25rem;
+}
+
+.navbar-toggler:focus, .btn-close:focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.nav-link{
+    font-size: 1.15rem;
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link:active{
+    color: #000;
+}
+
+@media (min-width: 992px){
+    .nav-link::before{
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #531294;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before, .nav-link.active::before{
+        width: 100%;
+        visibility: visible;
+    }
+}
