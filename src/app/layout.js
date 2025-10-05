@@ -11,6 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
+        <Script 
+          src="https://sql.js.org/dist/sql-wasm.js"
+          strategy="beforeInteractive"
+        />
         {children}
       </body>
     </html>
