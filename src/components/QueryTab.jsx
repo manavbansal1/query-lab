@@ -203,12 +203,72 @@ const QueryTab = () => {
                         ✅ Query executed in <strong>{executionTime}s</strong>
                     </div>
                 )}
-                
 
+                {/* Error */}
+                {error && (
+                    <div className="alert alert-danger">
+                        <h4>Error</h4>
+                        <code>{error}</code>
+                    </div>
+                )}
 
+                {/* Success Message if the query is successfull */}
+                {results && results.type === 'success' && (
+                    <div className="alert alert-success">
+                        <strong>✅ {results.message}</strong>
+                        {results.changes > 0 && <div>{results.changes} row(s) affected</div>}
+                    </div>
+                )}
+
+                {/* Results Table if sql */}
+                {results && results.type === 'table' && (
+                    <div className="card">
+                        <div className="card-header">
+                        <strong>Query Results</strong>
+                        <span className="badge badge-primary">{results.rowCount} rows</span>
+                        </div>
+                        <div className="card-body">
+                        <div className="table-container">
+                            <table className="results-table">
+                            <thead>
+                                <tr>
+                                {results.columns.map((col, idx) => (
+                                    <th key={`col-${idx}`}>{col}</th>
+                                ))}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {results.rows.map((row, rowIdx) => (
+                                <tr key={`row-${rowIdx}`}>
+                                    {results.columns.map((col, colIdx) => (
+                                    <td key={`cell-${rowIdx}-${colIdx}`}>{row[col]}</td>
+                                    ))}
+                                </tr>
+                                ))}
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Results JSON  if mongodb */}
+                {results && results.type === 'json' && (
+                    <div className="card">
+                        <div className="card-header">
+                        <strong>Query Results</strong>
+                        <span className="badge badge-success">{results.documentCount} documents</span>
+                        </div>
+                        <div className="card-body">
+                        <pre className="json-pre">
+                            <code>{JSON.stringify(results.data, null, 2)}</code>
+                        </pre>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
-  )
+  );
 }
 
 export default QueryTab
