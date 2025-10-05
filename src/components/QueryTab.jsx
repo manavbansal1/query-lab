@@ -196,6 +196,16 @@ const QueryTab = () => {
                             </div>
                         </div>
                     </div>
+                
+                {/* Execution Time */}
+                {executionTime && (
+                    <div className="alert alert-success">
+                        ✅ Query executed in <strong>{executionTime}s</strong>
+                    </div>
+                )}
+                
+
+
             </div>
         </div>
   )
