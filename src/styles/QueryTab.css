@@ -1,3 +1,10 @@
 .querylab-content{
     margin-top: 120px;
 }
+
+.btn-active-db{
+    background-color: beige;
+}
+.btn-active-db:hover, .btn-inactive-db:hover{
+    background-color: rgb(200, 200, 159);
+}
