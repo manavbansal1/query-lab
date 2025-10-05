@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
+import { FaDatabase } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 export default function Navbar({ onContactClick }) {
