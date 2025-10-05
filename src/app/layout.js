@@ -1,7 +1,7 @@
-import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from "@/components/Navbar"
+import './globals.css';
 import Script from 'next/script';
+import ClientLayout from '@/components/ClientLayout';
 
 export const metadata = {
   title: 'QueryLab',
@@ -12,15 +12,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar/>
         <Script 
           src="https://sql.js.org/dist/sql-wasm.js"
           strategy="beforeInteractive"
         />
-        {children}
+        
+        <ClientLayout>
+          {children}
+        </ClientLayout>
       </body>
     </html>
   );
 }
-
-
