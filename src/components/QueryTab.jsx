@@ -2,13 +2,22 @@
 
 import { useState } from 'react'
 import '../styles/QueryTab.css';
+import { sampleQueries, databaseOptions } from '@/data/sampleQueries';
 import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
 
 const QueryTab = () => {
     
     const [dbMode, setDbMode] = useState("sql"); // sql or mongodb   default: sql
     const [ currentDatabase, setCurrentDatabase ] = useState('users');  // users default
-    const [ mongoConnected, setMongoConnected ] = useState(false);
+    const [ mongoConnected, setMongoConnected ] = useState(false);   // State to track if the db is connected
+    const [ showSchema, setShowSchema ] = useState(true); // state to check if the user wants to see the  svhema 
+    const [schema, setSchema] = useState([]);  // State for schema
+    const [db, setDb] = useState(null);
+    const [query, setQuery] = useState('');  // state to mnage query
+    const [results, setResults] = useState(null);  // state to manage query result
+    const [error, setError] = useState(null);  // error state
+    const [loading, setLoading] = useState(false); // While processing, show spinner state
+    const [executionTime, setExecutionTime] = useState(null);  // To show user the time it took to execute thequery
 
     return (
         <div className="querylab-container">
@@ -72,11 +81,56 @@ const QueryTab = () => {
                 <div className="alert alert-warning">
                     <h4>MongoDB Local Setup Required</h4>
                     <p>Download and run our installer to connect MongoDB locally.</p>
-                    <button className="btn btn-warning btn-sm" onClick={() => setMongoConnected(true)}>
-                    I've installed it - Connect
+                    <button 
+                        className="btn btn-warning btn-sm" 
+                        // TODO: Add a new function that sends a ping to db api 
+                        // and then update mongoConnected state
+                        onClick={() => setMongoConnected(true)}
+                    >
+                        I've installed it - Connect
                     </button>
                 </div>
                 )}
+
+                {dbMode === 'mongodb' && mongoConnected && (
+                    <div className="alert alert-success">
+                        Success: Connected to MongoDB at localhost:27017
+                    </div>
+                )};
+                
+                {/* Box to shwo to schema of the database being currently used */}
+                { dbMode === 'sql' && (
+                    <div className="card">
+                        <div className="card-header">
+                            <span className="header-title">
+                                Database Schema
+                            </span>
+                            <button className="btn mx-1" onClick={() => setShowSchema(!showSchema)}>
+                                <FaEye className='icon'/>
+                                { showSchema ? 'Hide' : 'Show' }
+                            </button>
+                        </div>
+                        {showSchema && (
+                            <div className="card-body">
+                                <pre className="schema-pre">
+                                {schema.map((item, idx) => (
+                                    <div key={idx}>
+                                    <strong className="schema-type">{item[1]}</strong>: {item[0]}
+                                    {item[2] && <div className="schema-sql">{item[2]}</div>}
+                                    {idx < schema.length - 1 && <hr className="schema-divider" />}
+                                    </div>
+                                ))}
+                                </pre>
+                            </div>
+                        )}
+
+                        
+                    </div>
+                )}
+
+
+
+
             </div>
         </div>
   )
