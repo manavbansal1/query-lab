@@ -4,6 +4,7 @@ import { useState } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/sampleQueries';
 import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
+import Editor from "@monaco-editor/react";
 
 const QueryTab = () => {
     
@@ -130,7 +131,7 @@ const QueryTab = () => {
                     </div>
                 )}
 
-                {/* TODO Query Writer */}
+                {/* Query Writer */}
                 <div className="card">
                     <div className="card-body">
                         <div className="editor-header">
@@ -144,13 +145,28 @@ const QueryTab = () => {
                             Load Sample Queries
                         </button>
                         </div>
-                            <textarea
+                            {/* <textarea
                             className="query-editor"
                             rows={10}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder={dbMode === 'sql' ? 'Enter your SQL query...' : 'Enter your MongoDB query...'}
                             spellCheck={false}
+                            /> */}
+                            <Editor
+                                height="300px"
+                                language={dbMode === 'sql' ? 'sql' : 'javascript'} // ✅ 'sql' for SQL, 'javascript' for MongoDB
+                                theme="vs-light"
+                                value={query}
+                                className='query-editor'
+                                onChange={(value) => setQuery(value || "")}
+                                options={{
+                                    fontSize: 14,
+                                    minimap: { enabled: false },
+                                    wordWrap: "on",
+                                    automaticLayout: true,
+                                    scrollBeyondLastLine: false,
+                                }}
                             />
                             <div className="button-row">
                                 <button

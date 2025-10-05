@@ -1,5 +1,11 @@
+.querylab-container{
+    background-color: aliceblue;
+    width: 100vw;
+    height: 100vh;
+}
+
 .querylab-content{
-    margin-top: 120px;
+    padding-top: 120px;
 }
 
 .btn-active-db{
