@@ -1,5 +1,5 @@
 .navbar{
-    background-color: rgb(195, 186, 204); /* Change to white in final format */
+    background-color: rgb(255, 255, 255); /* Change to white in final format */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     height: 80px;
     margin-inline: 10px;
@@ -12,6 +12,15 @@
     font-size: 2rem;
     color: #531294;
     transition: 0.3s color;
+}
+.db-symbol{
+    color: #531294;
+} 
+
+.brand-name {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: middle;
 }
 
 .contact-button{

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
+import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
 import '../styles/Navbar.css';
 
 export default function Navbar({ onContactClick }) {
@@ -18,16 +18,9 @@ export default function Navbar({ onContactClick }) {
     <nav className="navbar navbar-expand-lg fixed-top">
       <div className="container">
         <Link className="navbar-brand me-auto mx-3" href="/">
-          <Image
-            src="/logo.png"
-            alt="QueryLab"
-            width={30}
-            height={30}
-            className="d-inline-block align-text-top me-2"
-          />
-          QueryLab
+        <FaDatabase size={38} className="db-symbol mx-2" />
+          <span className='brand-name'>QueryLab</span>
         </Link>
-        
         <div
           className={`offcanvas offcanvas-end ${isOpen ? 'show' : ''}`}
           tabIndex="-1"
@@ -61,7 +54,7 @@ export default function Navbar({ onContactClick }) {
                   className={`nav-link mx-lg-2 ${pathname === '/documentation' ? 'active' : ''}`}
                   onClick={handleLinkClick}
                 >
-                  Documentation
+                  Docs
                 </Link>
               </li>
               <li className="nav-item">
