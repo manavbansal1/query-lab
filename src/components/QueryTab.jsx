@@ -19,6 +19,10 @@ const QueryTab = () => {
     const [loading, setLoading] = useState(false); // While processing, show spinner state
     const [executionTime, setExecutionTime] = useState(null);  // To show user the time it took to execute thequery
 
+    const executeUserQuery = async () => {
+        return;
+    }
+
     return (
         <div className="querylab-container">
             <div className="querylab-content">
@@ -123,14 +127,59 @@ const QueryTab = () => {
                                 </pre>
                             </div>
                         )}
-
-                        
                     </div>
                 )}
 
-
-
-
+                {/* TODO Query Writer */}
+                <div className="card">
+                    <div className="card-body">
+                        <div className="editor-header">
+                        <label className="form-label">
+                            {dbMode === 'sql' ? 'SQL Query Editor' : 'MongoDB Query Editor'}
+                        </label>
+                        <button
+                            className="btn-link"
+                            onClick={() => setQuery(sampleQueries[dbMode][currentDatabase])}
+                        >
+                            Load Sample Queries
+                        </button>
+                        </div>
+                            <textarea
+                            className="query-editor"
+                            rows={10}
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder={dbMode === 'sql' ? 'Enter your SQL query...' : 'Enter your MongoDB query...'}
+                            spellCheck={false}
+                            />
+                            <div className="button-row">
+                                <button
+                                    className="btn btn-primary"
+                                    onClick={executeUserQuery}
+                                    disabled={!query.trim() || loading}
+                                >
+                                    {loading ? (
+                                    <>
+                                        <span className="spinner"></span>
+                                        Executing...
+                                    </>
+                                    ) : (
+                                    <>
+                                        <FaPlay className="icon" />
+                                        Execute Query
+                                    </>
+                                    )}
+                                </button>
+                                <button
+                                    className="btn btn-secondary"
+                                    onClick={() => { setResults(null); setError(null); setExecutionTime(null); setQuery(""); }}
+                                >
+                                    <FaTrash className="icon" />
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
   )
