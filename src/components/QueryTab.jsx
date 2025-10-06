@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import '../styles/QueryTab.css';
-import { sampleQueries, databaseOptions } from '@/data/sampleQueries';
+import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
 import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
 import { createSampleDatabase, createEmptyDatabase, executeQuery, getDatabaseSchema } from "@/lib/sqlite-manager";
 import Editor from "@monaco-editor/react";
