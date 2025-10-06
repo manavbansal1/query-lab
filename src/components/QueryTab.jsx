@@ -77,18 +77,19 @@ const QueryTab = () => {
         const startTime = performance.now();
         
         try {
-        const result = executeQuery(db, query);
-        setResults(result);
-        
-        const newSchema = getDatabaseSchema(db);
-        setSchema(newSchema);
-        
-        setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
+            const result = executeQuery(db, query);
+            setResults(result);
+            
+            const newSchema = getDatabaseSchema(db);
+            setSchema(newSchema);
+            
+            setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
         } catch (err) {
-        setError(err.message);
-        setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
+            const endTime = ((performance.now() - startTime) / 1000).toFixed(3);
+            setError(err.message);
+            setExecutionTime(null); // Don't show execution time on error
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 
@@ -203,7 +204,7 @@ const QueryTab = () => {
                     <div className="alert alert-success">
                         Success: Connected to MongoDB at localhost:27017
                     </div>
-                )};
+                )}
                 
                 {/* Box to shwo to schema of the database being currently used */}
                 { dbMode === 'sql' && (
@@ -256,7 +257,7 @@ const QueryTab = () => {
                             spellCheck={false}
                             /> */}
                             <Editor
-                                height="300px"
+                                height="200px"
                                 language={dbMode === 'sql' ? 'sql' : 'javascript'} // ✅ 'sql' for SQL, 'javascript' for MongoDB
                                 theme="vs-light"
                                 value={query}
@@ -300,7 +301,7 @@ const QueryTab = () => {
                     </div>
                 
                 {/* Execution Time */}
-                {executionTime && (
+                {executionTime && !error && (
                     <div className="alert alert-success">
                         ✅ Query executed in <strong>{executionTime}s</strong>
                     </div>
