@@ -349,10 +349,12 @@ const QueryTab = () => {
 
                 {error && (
                     <div className="alert alert-danger">
-                        <h4>Error</h4>
-                        <code>{error}</code>
+                        <div className="error-section">
+                            <h4>Error</h4>
+                            <code className="error-code">{error}</code>
+                        </div>
                         <button 
-                            className="btn btn-secondary mt-3" 
+                            className="btn btn-ai-help"  
                             onClick={askGemini}
                             disabled={aiLoading}
                         >
@@ -368,10 +370,10 @@ const QueryTab = () => {
                             )}
                         </button>
                         {aiResponse && (
-                            <div className="ai-response mt-3">
+                            <div className="ai-response">
                                 <div className="ai-header">
                                     <h5>💡 AI Suggestion:</h5>
-                                    <button className="close-ai-btn" onClick={closeAiResponse}>
+                                    <button className="close-ai-btn" onClick={closeAiResponse} title="Close suggestion">
                                         <FaTimes />
                                     </button>
                                 </div>
