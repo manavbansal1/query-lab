@@ -20,6 +20,8 @@ const QueryTab = () => {
     const [ error, setError ] = useState(null);  // error state
     const [ loading, setLoading ] = useState(false); // While processing, show spinner state
     const [ executionTime, setExecutionTime ] = useState(null);  // To show user the time it took to execute thequery
+    const [ aiLoading, setAiLoading ] = useState(false); // state to manage is loading
+    const [ aiResponse, setAiResponse ] = useState(null); // Store ai response
 
     // Initialize database when mode or database changes
     useEffect(() => {
@@ -128,6 +130,9 @@ const QueryTab = () => {
     };
 
     const askGemini = async () => {
+        setAiLoading(true);
+        setAiResponse(null);
+        
         try {
           const res = await fetch("/api/ask-gemini", {
             method: "POST",
@@ -139,13 +144,18 @@ const QueryTab = () => {
             }),
           });
       
-          if (!res.ok) throw new Error("Gemini API call failed");
+          if (!res.ok) {
+                const errorData = await res.json();
+                throw new Error(errorData.error || "Failed to get AI assistance");
+          }
       
           const data = await res.json();
-          console.log("Gemini says:", data.answer);
-          alert(data.answer); 
+          setAiResponse(data.answer);
         } catch (err) {
-          console.error("Gemini error:", err.message);
+            console.error("Gemini error:", err.message);
+            setAiResponse(`Failed to get AI help: ${err.message}`);
+        } finally {
+            setAiLoading(false);
         }
     };
             
@@ -330,15 +340,37 @@ const QueryTab = () => {
                     </div>
                 )}
 
-                {/* Error */}
                 {error && (
-                    <div className="alert alert-danger">
-                        <h4>Error</h4>
-                        <code>{error}</code>
-                        <button className="btn btn-ai" onClick={askGemini}>
-                            🤖 Ask Gemini for Help
-                        </button>
+                <div className="alert alert-danger">
+                    <h4>❌ Error</h4>
+                    <code>{error}</code>
+                    
+                    <button 
+                        className="btn btn-secondary mt-3" 
+                        onClick={askGemini}
+                        disabled={aiLoading}
+                    >
+                    {aiLoading ? (
+                        <>
+                        <span className="spinner"></span>
+                        Asking Gemini...
+                        </>
+                    ) : (
+                        <>
+                        🤖 Ask Gemini for Help
+                        </>
+                    )}
+                    </button>
+
+                    {aiResponse && (
+                    <div className="ai-response mt-3">
+                        <h5>💡 AI Suggestion:</h5>
+                        <div className="ai-content">
+                            {aiResponse}
+                        </div>
                     </div>
+                    )}
+                </div>
                 )}
 
                 {/* Success Message if the query is successfull */}

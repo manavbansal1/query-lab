@@ -510,3 +510,41 @@
         font-size: 0.9rem;
     }
 }
+
+/* Add these styles to your QueryTab.css */
+
+.ai-response {
+    background: #f0f9ff;
+    border: 2px solid #3b82f6;
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-top: 1rem;
+}
+
+.ai-response h5 {
+    color: #1e40af;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.ai-content {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #374151;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+    border: 1px solid #dbeafe;
+}
+
+.btn.mt-3 {
+    margin-top: 1rem;
+}
+
+/* Style for disabled AI button */
+.btn-secondary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
