@@ -146,4 +146,50 @@ export async function createSampleDatabase(type = 'users') {
     
     return db;
 }
-  
+ 
+// Execute query and return results
+export function executeQuery(db, query) {
+    try {
+      const results = db.exec(query);
+      
+      if (results.length === 0) {
+        return {
+          type: 'success',
+          message: 'Query executed successfully',
+          changes: db.getRowsModified() // Return the rows modified
+        };
+      }
+      
+      const result = results[0];
+      return {
+        type: 'table',
+        columns: result.columns,
+        rows: result.values.map(row => {
+          const obj = {};
+          result.columns.forEach((col, i) => {
+            obj[col] = row[i];
+          });
+          return obj;
+        }),
+        rowCount: result.values.length
+      };
+    } catch (error) {
+      throw new Error(error.message);
+    }
+}
+
+// Get database schema
+// sUed when the users asks for database schema
+export function getDatabaseSchema(db) {
+    const schema = db.exec(`
+      SELECT 
+        name,
+        type,
+        sql
+      FROM sqlite_master 
+      WHERE type IN ('table', 'index')
+      ORDER BY type, name;
+    `);
+    
+    return schema[0]?.values || [];
+}
