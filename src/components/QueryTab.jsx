@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
-import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
+import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope, FaTimes } from 'react-icons/fa';
 import { createSampleDatabase, createEmptyDatabase, executeQuery, getDatabaseSchema } from "@/lib/sqlite-manager";
 import Editor from "@monaco-editor/react";
 
@@ -331,7 +331,7 @@ const QueryTab = () => {
                                 </button>
                                 <button
                                     className="btn btn-secondary"
-                                    onClick={() => { setResults(null); setError(null); setExecutionTime(null); setQuery(""); }}
+                                    onClick={() => { setResults(null); setError(null); setExecutionTime(null); setQuery(""); setAiResponse(null); }}
                                 >
                                     <FaTrash className="icon" />
                                     Clear
@@ -348,36 +348,39 @@ const QueryTab = () => {
                 )}
 
                 {error && (
-                <div className="alert alert-danger">
-                    <h4>❌ Error</h4>
-                    <code>{error}</code>
-                    
-                    <button 
-                        className="btn btn-secondary mt-3" 
-                        onClick={askGemini}
-                        disabled={aiLoading}
-                    >
-                    {aiLoading ? (
-                        <>
-                        <span className="spinner"></span>
-                        Asking Gemini...
-                        </>
-                    ) : (
-                        <>
-                        🤖 Ask Gemini for Help
-                        </>
-                    )}
-                    </button>
-
-                    {aiResponse && (
-                    <div className="ai-response mt-3">
-                        <h5>💡 AI Suggestion:</h5>
-                        <div className="ai-content">
-                            {aiResponse}
-                        </div>
+                    <div className="alert alert-danger">
+                        <h4>Error</h4>
+                        <code>{error}</code>
+                        <button 
+                            className="btn btn-secondary mt-3" 
+                            onClick={askGemini}
+                            disabled={aiLoading}
+                        >
+                            {aiLoading ? (
+                                <>
+                                    <span className="spinner"></span>
+                                    Asking Gemini...
+                                </>
+                            ) : (
+                                <>
+                                    Ask Gemini for Help
+                                </>
+                            )}
+                        </button>
+                        {aiResponse && (
+                            <div className="ai-response mt-3">
+                                <div className="ai-header">
+                                    <h5>💡 AI Suggestion:</h5>
+                                    <button className="close-ai-btn" onClick={closeAiResponse}>
+                                        <FaTimes />
+                                    </button>
+                                </div>
+                                <div className="ai-content">
+                                    {aiResponse}
+                                </div>
+                            </div>
+                        )}
                     </div>
-                    )}
-                </div>
                 )}
 
                 {/* Success Message if the query is successfull */}

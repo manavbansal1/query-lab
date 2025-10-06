@@ -519,13 +519,40 @@
     border-radius: 10px;
     padding: 1.25rem;
     margin-top: 1rem;
+    position: relative;
+}
+
+.ai-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
 }
 
 .ai-response h5 {
     color: #1e40af;
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin: 0;
     font-size: 1rem;
+}
+
+.close-ai-btn {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.close-ai-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
 }
 
 .ai-content {
