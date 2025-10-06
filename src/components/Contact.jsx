@@ -18,9 +18,9 @@ const Contact = ({ isOpen, onClose }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value});
     };  
 
-    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
-    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     const handleSubmit = async (e) => {
         e.preventDefault();

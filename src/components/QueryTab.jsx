@@ -12,7 +12,7 @@ const QueryTab = () => {
     const [dbMode, setDbMode] = useState("sql"); // sql or mongodb   default: sql
     const [ currentDatabase, setCurrentDatabase ] = useState('users');  // users default
     const [ mongoConnected, setMongoConnected ] = useState(false);   // State to track if the db is connected
-    const [ showSchema, setShowSchema ] = useState(true); // state to check if the user wants to see the  svhema 
+    const [ showSchema, setShowSchema ] = useState(false); // state to check if the user wants to see the  svhema 
     const [schema, setSchema] = useState([]);  // State for schema
     const [db, setDb] = useState(null);
     const [query, setQuery] = useState('');  // state to mnage query
