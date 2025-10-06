@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/sampleQueries';
 import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope } from 'react-icons/fa';
-import { createSampleDatabase, createEmptyDatabase, executeQuery, getDatabaseSchema } from '@/lib/sqlite-manager';
+import { createSampleDatabase, createEmptyDatabase, executeQuery, getDatabaseSchema } from "@/lib/sqlite-manager";
 import Editor from "@monaco-editor/react";
 
 const QueryTab = () => {
@@ -21,9 +21,110 @@ const QueryTab = () => {
     const [loading, setLoading] = useState(false); // While processing, show spinner state
     const [executionTime, setExecutionTime] = useState(null);  // To show user the time it took to execute thequery
 
+    // Initialize database when mode or database changes
+    useEffect(() => {
+        if (dbMode === 'sql') {
+        loadDatabase(currentDatabase);
+        } else {
+        // MongoDB mode - just load sample queries
+        setQuery(sampleQueries.mongodb[currentDatabase]);
+        setResults(null);
+        setError(null);
+        }
+    }, [currentDatabase, dbMode]);
+
+    const loadDatabase = async (dbType) => {
+        setLoading(true);
+        try {
+        let newDb;
+        if (dbType === 'custom') {
+            newDb = await createEmptyDatabase();
+        } else {
+            newDb = await createSampleDatabase(dbType);
+        }
+        setDb(newDb);
+        setQuery(sampleQueries.sql[dbType]);
+        setResults(null);
+        setError(null);
+        
+        const dbSchema = getDatabaseSchema(newDb);
+        setSchema(dbSchema);
+        } catch (err) {
+        setError('Failed to load database: ' + err.message);
+        } finally {
+        setLoading(false);
+        }
+    };
+
     const executeUserQuery = async () => {
+        if (dbMode === 'mongodb') {
+        if (!mongoConnected) {
+            setError('MongoDB is not connected. Please run the local installer first.');
+            return;
+        }
+        // Execute MongoDB query via bridge server
+        executeMongoQuery();
         return;
-    }
+        }
+
+        if (!db) return;
+        
+        setLoading(true);
+        setError(null);
+        setResults(null);
+        setExecutionTime(null);
+        
+        const startTime = performance.now();
+        
+        try {
+        const result = executeQuery(db, query);
+        setResults(result);
+        
+        const newSchema = getDatabaseSchema(db);
+        setSchema(newSchema);
+        
+        setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
+        } catch (err) {
+        setError(err.message);
+        setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
+        } finally {
+        setLoading(false);
+        }
+    };
+
+    const executeMongoQuery = async () => {
+        setLoading(true);
+        setError(null);
+        setResults(null);
+        
+        const startTime = performance.now();
+        
+        try {
+        const response = await fetch('http://localhost:8080/query', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query })
+        });
+        
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.error || 'Query failed');
+        }
+        
+        setResults({
+            type: 'json',
+            data: data.results,
+            documentCount: data.results.length
+        });
+        
+        setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
+        } catch (err) {
+        setError(err.message);
+        } finally {
+        setLoading(false);
+        }
+    };
 
     return (
         <div className="querylab-container">
