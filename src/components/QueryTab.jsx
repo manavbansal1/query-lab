@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
-import { FaPlay, FaTrash, FaDatabase, FaEye, FaEnvelope, FaTimes } from 'react-icons/fa';
+import { FaPlay, FaTrash, FaDatabase, FaEye, FaRobot, FaTimes } from 'react-icons/fa';
 import { createSampleDatabase, createEmptyDatabase, executeQuery, getDatabaseSchema } from "@/lib/sqlite-manager";
 import Editor from "@monaco-editor/react";
 
@@ -365,6 +365,7 @@ const QueryTab = () => {
                                 </>
                             ) : (
                                 <>
+                                    <FaRobot/>
                                     Ask Gemini for Help
                                 </>
                             )}
