@@ -59,6 +59,9 @@ const QueryTab = () => {
     };
 
     const executeUserQuery = async () => {
+        
+        setAiResponse(null); // Clear AI response
+
         if (dbMode === 'mongodb') {
         if (!mongoConnected) {
             setError('MongoDB is not connected. Please run the local installer first.');
@@ -157,6 +160,10 @@ const QueryTab = () => {
         } finally {
             setAiLoading(false);
         }
+    };
+
+    const closeAiResponse = () => {
+        setAiResponse(null);
     };
             
 
