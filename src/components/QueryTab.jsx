@@ -127,6 +127,21 @@ const QueryTab = () => {
         }
     };
 
+    const askGemini = async () => {
+        const res = await fetch("/api/ask-gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query,
+            error,
+            schema
+          })
+        });
+      
+        const data = await res.json();
+        console.log("Gemini says:", data.answer);
+      };      
+
     return (
         <div className="querylab-container">
             <div className="querylab-content">
