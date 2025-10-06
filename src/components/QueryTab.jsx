@@ -9,17 +9,17 @@ import Editor from "@monaco-editor/react";
 
 const QueryTab = () => {
     
-    const [dbMode, setDbMode] = useState("sql"); // sql or mongodb   default: sql
+    const [ dbMode, setDbMode ] = useState("sql"); // sql or mongodb   default: sql
     const [ currentDatabase, setCurrentDatabase ] = useState('users');  // users default
     const [ mongoConnected, setMongoConnected ] = useState(false);   // State to track if the db is connected
     const [ showSchema, setShowSchema ] = useState(false); // state to check if the user wants to see the  svhema 
-    const [schema, setSchema] = useState([]);  // State for schema
-    const [db, setDb] = useState(null);
-    const [query, setQuery] = useState('');  // state to mnage query
-    const [results, setResults] = useState(null);  // state to manage query result
-    const [error, setError] = useState(null);  // error state
-    const [loading, setLoading] = useState(false); // While processing, show spinner state
-    const [executionTime, setExecutionTime] = useState(null);  // To show user the time it took to execute thequery
+    const [ schema, setSchema ] = useState([]);  // State for schema
+    const [ db, setDb ] = useState(null);
+    const [ query, setQuery ] = useState('');  // state to mnage query
+    const [ results, setResults ] = useState(null);  // state to manage query result
+    const [ error, setError ] = useState(null);  // error state
+    const [ loading, setLoading ] = useState(false); // While processing, show spinner state
+    const [ executionTime, setExecutionTime ] = useState(null);  // To show user the time it took to execute thequery
 
     // Initialize database when mode or database changes
     useEffect(() => {
@@ -128,19 +128,27 @@ const QueryTab = () => {
     };
 
     const askGemini = async () => {
-        const res = await fetch("/api/ask-gemini", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            query,
-            error,
-            schema
-          })
-        });
+        try {
+          const res = await fetch("/api/ask-gemini", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              query,
+              error,
+              schema,
+            }),
+          });
       
-        const data = await res.json();
-        console.log("Gemini says:", data.answer);
-      };      
+          if (!res.ok) throw new Error("Gemini API call failed");
+      
+          const data = await res.json();
+          console.log("Gemini says:", data.answer);
+          alert(data.answer); 
+        } catch (err) {
+          console.error("Gemini error:", err.message);
+        }
+    };
+            
 
     return (
         <div className="querylab-container">
@@ -327,6 +335,9 @@ const QueryTab = () => {
                     <div className="alert alert-danger">
                         <h4>Error</h4>
                         <code>{error}</code>
+                        <button className="btn btn-ai" onClick={askGemini}>
+                            🤖 Ask Gemini for Help
+                        </button>
                     </div>
                 )}
 

@@ -47,9 +47,12 @@
 }
 
 .header-title {
-    font-size: 1.05rem;
     font-weight: 600;
-    color: #531294;
+    color: #374151;
+    font-size: 0.9rem;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .card-header .btn {
@@ -461,9 +464,9 @@
 
     .card-header {
         padding: 1rem 1.25rem;
-        flex-direction: column;
+        /* flex-direction: column;
         gap: 0.75rem;
-        align-items: flex-start;
+        align-items: flex-start; */
     }
 
     .button-group {
