@@ -113,38 +113,65 @@ const QueryTab = () => {
     };
 
     const executeMongoQuery = async () => {
+        if (!sessionId) {
+            setError('Session not initialized');
+            return;
+        }
+    
         setLoading(true);
         setError(null);
         setResults(null);
+        setAiResponse(null);
         
         const startTime = performance.now();
         
         try {
-        const response = await fetch('http://localhost:8080/query', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query })
-        });
-        
-        const data = await response.json();
-        
-        if (!response.ok) {
-            throw new Error(data.error || 'Query failed');
-        }
-        
-        setResults({
-            type: 'json',
-            data: data.results,
-            documentCount: data.results.length
-        });
-        
-        setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
+            const response = await fetch('/api/mongodb-query', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    query,
+                    sessionId,
+                    dbType: currentDatabase
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error(data.error || 'Query failed');
+            }
+            
+            setResults({
+                type: 'json',
+                data: data.results,
+                documentCount: data.results.length
+            });
+            
+            setExecutionTime(((performance.now() - startTime) / 1000).toFixed(3));
         } catch (err) {
-        setError(err.message);
+            setError(err.message);
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
+
+    // Retrieve mongodb schema
+    const fetchMongoSchema = async () => {
+        if (!sessionId) return;
+        
+        try {
+            const response = await fetch(`/api/mongodb-query?sessionId=${sessionId}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                setMongoSchema(data.schema);
+            }
+        } catch (error) {
+            console.error('Failed to fetch MongoDB schema:', error);
+        }
+    };
+    
 
     const askGemini = async () => {
         setAiLoading(true);
