@@ -67,9 +67,9 @@ const SAMPLE_DATA = {
     ]
 };
 const DB_TYPE_COLLECTIONS = {
-    users: ['users'],           
-    blog: ['posts'],            
-    ecommerce: ['products'],    
+    users: ['users', 'orders'],        
+    blog: ['posts', 'comments'],         
+    ecommerce: ['products', 'customers'], 
     custom: []                  
 };
 
@@ -284,13 +284,24 @@ export async function GET(req) {
         // Get allowed collections for this database type
         const allowedCollections = DB_TYPE_COLLECTIONS[dbType] || [];
 
+        // Get list of ALL sample data collection names
+        const sampleCollectionNames = Object.keys(SAMPLE_DATA); // ['users', 'orders', 'posts', 'comments', 'products', 'customers']
+
         for (const collection of sessionCollections) {
             const collectionName = collection.name.replace(`_${sessionId}`, '');
             
-            // Only include collections that belong to the current database type
-            if (allowedCollections.includes(collectionName) || dbType === 'custom') {
-                const sampleDoc = await db.collection(collection.name).findOne();
-                schema[collectionName] = sampleDoc ? Object.keys(sampleDoc) : [];
+            if (dbType === 'custom') {
+                // For custom: ONLY show collections that are NOT in sample data
+                if (!sampleCollectionNames.includes(collectionName)) {
+                    const sampleDoc = await db.collection(collection.name).findOne();
+                    schema[collectionName] = sampleDoc ? Object.keys(sampleDoc) : [];
+                }
+            } else {
+                // For other database types: show only allowed collections
+                if (allowedCollections.includes(collectionName)) {
+                    const sampleDoc = await db.collection(collection.name).findOne();
+                    schema[collectionName] = sampleDoc ? Object.keys(sampleDoc) : [];
+                }
             }
         }
 
