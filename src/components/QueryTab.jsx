@@ -1,5 +1,5 @@
 'use client'
-
+import { v4 as uuidv4 } from 'uuid';
 import { useState, useEffect } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
@@ -11,12 +11,14 @@ const QueryTab = () => {
     
     const [ dbMode, setDbMode ] = useState("sql"); // sql or mongodb   default: sql
     const [ currentDatabase, setCurrentDatabase ] = useState('users');  // users default
-    const [ mongoConnected, setMongoConnected ] = useState(false);   // State to track if the db is connected
+    const [ mongoConnected, setMongoConnected ] = useState(true);   // State to track if the db is connected
     const [ showSchema, setShowSchema ] = useState(false); // state to check if the user wants to see the  svhema 
     const [ schema, setSchema ] = useState([]);  // State for schema
     const [ db, setDb ] = useState(null);
     const [ query, setQuery ] = useState('');  // state to mnage query
     const [ results, setResults ] = useState(null);  // state to manage query result
+    const [sessionId, setSessionId] = useState(null);  // For sessionId
+    const [mongoSchema, setMongoSchema] = useState(null);  // for mongodb schema
     const [ error, setError ] = useState(null);  // error state
     const [ loading, setLoading ] = useState(false); // While processing, show spinner state
     const [ executionTime, setExecutionTime ] = useState(null);  // To show user the time it took to execute thequery
