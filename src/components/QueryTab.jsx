@@ -373,7 +373,7 @@ const QueryTab = () => {
                         {aiResponse && (
                             <div className="ai-response">
                                 <div className="ai-header">
-                                    <h5>💡 AI Suggestion:</h5>
+                                    <h5>💡 AI Suggestion</h5>
                                     <button className="close-ai-btn" onClick={closeAiResponse} title="Close suggestion">
                                         <FaTimes />
                                     </button>
