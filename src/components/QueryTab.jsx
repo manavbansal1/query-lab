@@ -167,7 +167,7 @@ const QueryTab = () => {
         if (!sessionId) return;
         
         try {
-            const response = await fetch(`/api/mongodb-query?sessionId=${sessionId}`);
+            const response = await fetch(`/api/mongodb-query?sessionId=${sessionId}&dbType=${currentDatabase}`);
             const data = await response.json();
             
             if (data.success) {
@@ -177,7 +177,6 @@ const QueryTab = () => {
             console.error('Failed to fetch MongoDB schema:', error);
         }
     };
-    
 
     const askGemini = async () => {
         setAiLoading(true);

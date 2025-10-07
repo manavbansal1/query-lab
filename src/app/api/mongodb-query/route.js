@@ -38,6 +38,12 @@ const SAMPLE_DATA = {
         { name: 'USB-C Cable', category: 'Accessories', price: 12.99, stock: 100, rating: 4.3 }
     ]
 };
+const DB_TYPE_COLLECTIONS = {
+    users: ['users'],           
+    blog: ['posts'],            
+    ecommerce: ['products'],    
+    custom: []                  
+};
 
 // Track session activity
 async function updateSessionActivity(db, sessionId) {
@@ -61,7 +67,8 @@ async function updateSessionActivity(db, sessionId) {
 
 // Initialize session collections with sample data
 async function initializeSession(db, sessionId, dbType) {
-    const collections = dbType === 'custom' ? [] : Object.keys(SAMPLE_DATA);
+    // Get collections for this database type
+    const collections = DB_TYPE_COLLECTIONS[dbType] || [];
     
     for (const collectionName of collections) {
         const sessionCollectionName = `${collectionName}_${sessionId}`;
@@ -69,7 +76,7 @@ async function initializeSession(db, sessionId, dbType) {
         
         // Check if already initialized
         const count = await collection.countDocuments();
-        if (count === 0) {
+        if (count === 0 && SAMPLE_DATA[collectionName]) {
             await collection.insertMany(SAMPLE_DATA[collectionName]);
         }
     }
@@ -223,6 +230,7 @@ export async function GET(req) {
     try {
         const { searchParams } = new URL(req.url);
         const sessionId = searchParams.get('sessionId');
+        const dbType = searchParams.get('dbType') || 'users';
 
         if (!sessionId) {
             return Response.json({ error: 'Session ID is required' }, { status: 400 });
@@ -234,16 +242,28 @@ export async function GET(req) {
         // Track session activity
         await updateSessionActivity(db, sessionId);
 
+        // Initialize session collections if they don't exist
+        if (dbType !== 'custom') {
+            await initializeSession(db, sessionId, dbType);
+        }
+
         // Get all collections for this session
         const allCollections = await db.listCollections().toArray();
         const sessionCollections = allCollections.filter(c => c.name.endsWith(`_${sessionId}`));
 
         const schema = {};
 
+        // Get allowed collections for this database type
+        const allowedCollections = DB_TYPE_COLLECTIONS[dbType] || [];
+
         for (const collection of sessionCollections) {
             const collectionName = collection.name.replace(`_${sessionId}`, '');
-            const sampleDoc = await db.collection(collection.name).findOne();
-            schema[collectionName] = sampleDoc ? Object.keys(sampleDoc) : [];
+            
+            // Only include collections that belong to the current database type
+            if (allowedCollections.includes(collectionName) || dbType === 'custom') {
+                const sampleDoc = await db.collection(collection.name).findOne();
+                schema[collectionName] = sampleDoc ? Object.keys(sampleDoc) : [];
+            }
         }
 
         return Response.json({ success: true, schema });
