@@ -37,6 +37,12 @@ const QueryTab = () => {
         }
     }, [currentDatabase, dbMode]);
 
+    useEffect(() => {
+        if (dbMode === 'mongodb' && mongoConnected && sessionId) {
+            fetchMongoSchema();
+        }
+    }, [dbMode, mongoConnected, currentDatabase, sessionId]);
+
     // Initialize session on component mount
     useEffect(() => {
         let storedSessionId = localStorage.getItem('querylab_session');
@@ -206,8 +212,17 @@ const QueryTab = () => {
     const closeAiResponse = () => {
         setAiResponse(null);
     };
-            
 
+    const resetSession = () => {
+        const newSessionId = uuidv4();
+        localStorage.setItem('querylab_session', newSessionId);
+        setSessionId(newSessionId);
+        setResults(null);
+        setError(null);
+        setMongoSchema(null);
+        alert('✅ Session reset! You have fresh data now.');
+    };
+            
     return (
         <div className="querylab-container">
             <div className="querylab-content">
@@ -315,6 +330,41 @@ const QueryTab = () => {
                     </div>
                 )}
 
+                {dbMode === 'mongodb' && mongoConnected && (
+                    <div className="card">
+                        <div className="card-header">
+                            <span className="header-title">Database Collections</span>
+                            <button className="btn mx-1" onClick={() => setShowSchema(!showSchema)}>
+                                <FaEye className='icon'/>
+                                {showSchema ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
+                        {showSchema && mongoSchema && (
+                            <div className="card-body">
+                                <div className="mongo-schema">
+                                    {Object.entries(mongoSchema).map(([collectionName, fields], idx) => (
+                                        <div key={idx} className="collection-item">
+                                            <div className="collection-header">
+                                                <strong className="collection-name">Collection: {collectionName}</strong>
+                                                <span className="field-count">{fields.length} fields</span>
+                                            </div>
+                                            <div className="collection-fields">
+                                                {fields.map((field, fieldIdx) => (
+                                                    <span key={fieldIdx} className="field-badge">
+                                                        {field}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                            {idx < Object.keys(mongoSchema).length - 1 && <hr className="schema-divider" />}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+
                 {/* Query Writer */}
                 <div className="card">
                     <div className="card-body">
@@ -329,14 +379,14 @@ const QueryTab = () => {
                             Load Sample Queries
                         </button>
                         </div>
-                            {/* <textarea
-                            className="query-editor"
-                            rows={10}
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            placeholder={dbMode === 'sql' ? 'Enter your SQL query...' : 'Enter your MongoDB query...'}
-                            spellCheck={false}
-                            /> */}
+                            {/* {dbMode === 'mongodb' && (
+                                <button
+                                    className="btn btn-primary mb-3"
+                                    onClick={resetSession}
+                                >
+                                    Reset My Data
+                                </button>
+                            )} */}
                             <Editor
                                 height="200px"
                                 language={dbMode === 'sql' ? 'sql' : 'javascript'} // ✅ 'sql' for SQL, 'javascript' for MongoDB
