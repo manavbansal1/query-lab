@@ -296,11 +296,11 @@ const QueryTab = () => {
                 </div>
                 )}
 
-                {dbMode === 'mongodb' && mongoConnected && (
+                {/* {dbMode === 'mongodb' && mongoConnected && (
                     <div className="alert alert-success">
                         Success: Connected to MongoDB at localhost:27017
                     </div>
-                )}
+                )} */}
                 
                 {/* Box to shwo to schema of the database being currently used */}
                 { dbMode === 'sql' && (
