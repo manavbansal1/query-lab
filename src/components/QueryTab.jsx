@@ -37,6 +37,18 @@ const QueryTab = () => {
         }
     }, [currentDatabase, dbMode]);
 
+    // Initialize session on component mount
+    useEffect(() => {
+        let storedSessionId = localStorage.getItem('querylab_session');
+        
+        if (!storedSessionId) {
+            storedSessionId = uuidv4();
+            localStorage.setItem('querylab_session', storedSessionId);
+        }
+        
+        setSessionId(storedSessionId);
+    }, []);
+
     const loadDatabase = async (dbType) => {
         setLoading(true);
         try {
