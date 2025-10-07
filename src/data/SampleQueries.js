@@ -43,27 +43,73 @@ export const sampleQueries = {
     },
     
     mongodb: {
-      users: `// Users Collection
-  db.users.find()
-  
-  db.users.find({ age: { $gt: 30 } })`,
+      users: `// Find all users
+    db.users.find()
+    
+    // Find all orders
+    // db.orders.find()
+    
+    // Find orders with amount > 100
+    // db.orders.find({ amount: { $gt: 100 } })
+    
+    // Find users older than 30
+    // db.users.find({ age: { $gt: 30 } })
+    
+    // Count total orders
+    // db.orders.countDocuments()`,
       
-      blog: `// Posts Collection
-  db.posts.find().sort({ views: -1 })
-  
-  db.posts.find({ author: "John Doe" })`,
+      blog: `// Find all posts
+    db.posts.find()
+    
+    // Find all comments
+    // db.comments.find()
+    
+    // Find posts sorted by views (descending)
+    // db.posts.find().sort({ views: -1 })
+    
+    // Find comments for post_id 1
+    // db.comments.find({ post_id: 1 })
+    
+    // Count comments per post
+    // db.comments.countDocuments({ post_id: 1 })`,
       
-      ecommerce: `// Products Collection
-  db.products.find({ price: { $lt: 100 } })`,
+      ecommerce: `// Find all products
+    db.products.find()
+    
+    // Find all customers
+    // db.customers.find()
+    
+    // Find products under $100
+    // db.products.find({ price: { $lt: 100 } })
+    
+    // Find products by category
+    // db.products.find({ category: "Electronics" })
+    
+    // Find customers by city
+    // db.customers.find({ city: "New York" })
+    
+    // Sort products by price
+    // db.products.find().sort({ price: 1 })`,
       
-      custom: `// Create Your Own Collection!
-  db.employees.insertMany([
-    { name: "John Doe", department: "IT", salary: 75000 }
-  ])
-  
-  db.employees.find()`
+      custom: `// Create your own collections!
+    db.employees.insertMany([
+      { name: "John Doe", department: "IT", salary: 75000 },
+      { name: "Jane Smith", department: "HR", salary: 65000 }
+    ])
+    
+    // Query your data
+    // db.employees.find()
+    
+    // Find by department
+    // db.employees.find({ department: "IT" })
+    
+    // Update a document
+    // db.employees.updateOne({ name: "John Doe" }, { $set: { salary: 80000 } })
+    
+    // Delete a document
+    // db.employees.deleteOne({ name: "Jane Smith" })`
     }
-  };
+  }
   
 export const databaseOptions = [
 { id: 'users', name: 'Users & Orders' },
