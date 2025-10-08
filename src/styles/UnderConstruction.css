@@ -1,0 +1,211 @@
+.construction-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+    padding: 2rem;
+    padding-top: 120px;
+}
+
+.construction-content {
+    max-width: 600px;
+    text-align: center;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Animated Icon */
+.construction-icon {
+    position: relative;
+    margin: 0 auto 2rem;
+    width: 120px;
+    height: 120px;
+}
+
+.tools-icon {
+    color: #531294;
+    animation: swing 2s ease-in-out infinite;
+}
+
+.rocket-icon {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    color: #ff6b6b;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(-10deg);
+    }
+    50% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Title */
+.construction-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #531294 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+/* Message */
+.construction-message {
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Badge */
+.construction-badge {
+    display: inline-block;
+    margin-bottom: 2rem;
+}
+
+.badge-text {
+    background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(83, 18, 148, 0.3);
+}
+
+/* Coming Features */
+.coming-features {
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.coming-features h3 {
+    font-size: 1.2rem;
+    color: #374151;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.coming-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.coming-features li {
+    padding: 0.5rem 0;
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Action Buttons */
+.construction-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-home,
+.btn-primary-construct {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-home {
+    background: #f3f4f6;
+    color: #374151;
+    border: 2px solid #e5e7eb;
+}
+
+.btn-home:hover {
+    background: white;
+    border-color: #531294;
+    color: #531294;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(83, 18, 148, 0.15);
+}
+
+.btn-primary-construct {
+    background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
+    color: white;
+    border: none;
+}
+
+.btn-primary-construct:hover {
+    background: linear-gradient(135deg, #6b1bb8 0%, #7c3aed 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(83, 18, 148, 0.35);
+    color: white;
+}
+
+.btn-icon {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .construction-container {
+        padding: 1rem;
+        padding-top: 100px;
+    }
+
+    .construction-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .construction-title {
+        font-size: 2rem;
+    }
+
+    .construction-message {
+        font-size: 1rem;
+    }
+
+    .construction-actions {
+        flex-direction: column;
+    }
+
+    .btn-home,
+    .btn-primary-construct {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .coming-features {
+        text-align: center;
+    }
+
+    .coming-features ul {
+        text-align: left;
+    }
+}
