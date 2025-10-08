@@ -52,7 +52,7 @@
 ![Schema View](./public/schema.png)
 
 ### AI-Powered Help
-![AI Help](https://via.placeholder.com/800x400?text=Gemini+AI+Assistance) // Will add later
+![AI Help](/public/ai-response.png)
 
 ---
 
