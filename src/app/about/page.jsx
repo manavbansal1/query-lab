@@ -6,8 +6,8 @@ const page = () => {
     <div>
       <UnderConstruction 
       title="About QueryLab"
-      message="We're crafting an amazing story about QueryLab, our mission, and the person behind it. Stay tuned!"
-      estimatedTime="Coming in Q2 2025"
+      message="I'm working on telling the story of QueryLab and sharing more about myself!"
+      estimatedTime="In Progress"
     />
     </div>
   )
