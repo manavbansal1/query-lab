@@ -91,6 +91,44 @@
     box-shadow: 0 4px 12px rgba(83, 18, 148, 0.3);
 }
 
+/* Solo Developer Note */
+.solo-dev-note {
+    background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%);
+    border: 2px solid #fecaca;
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.heart-icon {
+    color: #dc2626;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.solo-dev-note p {
+    margin: 0;
+    color: #374151;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.solo-dev-note strong {
+    color: #dc2626;
+    font-size: 1.05rem;
+}
+
 /* Coming Features */
 .coming-features {
     background: #f9fafb;
@@ -173,6 +211,21 @@
     font-size: 0.9rem;
 }
 
+/* Support Note */
+.support-note {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px dashed #e5e7eb;
+}
+
+.support-note p {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .construction-container {
         padding: 1rem;
