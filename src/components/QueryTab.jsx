@@ -1,5 +1,7 @@
 'use client'
 import { v4 as uuidv4 } from 'uuid';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
@@ -222,6 +224,31 @@ const QueryTab = () => {
         alert('✅ Session reset! You have fresh data now.');
     };
             
+    const renderMarkdown = (markdown) => {
+        if (!markdown) return '';
+        
+        try {
+            // Parse markdown to HTML
+            const rawHtml = marked.parse(markdown);
+            
+            // Sanitize HTML to prevent XSS attacks
+            const cleanHtml = DOMPurify.sanitize(rawHtml, {
+                ALLOWED_TAGS: [
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                    'p', 'br', 'strong', 'em', 'u', 'code', 'pre',
+                    'ul', 'ol', 'li', 'blockquote', 'a', 'table',
+                    'thead', 'tbody', 'tr', 'th', 'td', 'hr'
+                ],
+                ALLOWED_ATTR: ['href', 'target', 'rel']
+            });
+            
+            return cleanHtml;
+        } catch (error) {
+            console.error('Markdown parsing error:', error);
+            return markdown; // Return plain text if parsing fails
+        }
+    };
+
     return (
         <div className="querylab-container">
             <div className="querylab-content">
