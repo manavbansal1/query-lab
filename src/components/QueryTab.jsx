@@ -2,7 +2,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import '../styles/QueryTab.css';
 import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
 import { FaPlay, FaTrash, FaDatabase, FaEye, FaRobot, FaTimes } from 'react-icons/fa';
@@ -55,6 +55,16 @@ const QueryTab = () => {
         }
         
         setSessionId(storedSessionId);
+    }, []);
+
+    useEffect(() => {
+        // Configure marked options
+        marked.setOptions({
+            breaks: true,         
+            gfm: true,          
+            headerIds: false,   
+            mangle: false      
+        });
     }, []);
 
     const loadDatabase = async (dbType) => {
@@ -230,7 +240,7 @@ const QueryTab = () => {
         try {
             // Parse markdown to HTML
             const rawHtml = marked.parse(markdown);
-            
+
             // Sanitize HTML to prevent XSS attacks
             const cleanHtml = DOMPurify.sanitize(rawHtml, {
                 ALLOWED_TAGS: [
@@ -240,8 +250,7 @@ const QueryTab = () => {
                     'thead', 'tbody', 'tr', 'th', 'td', 'hr'
                 ],
                 ALLOWED_ATTR: ['href', 'target', 'rel']
-            });
-            
+            }); 
             return cleanHtml;
         } catch (error) {
             console.error('Markdown parsing error:', error);
@@ -495,8 +504,10 @@ const QueryTab = () => {
                                         <FaTimes />
                                     </button>
                                 </div>
-                                <div className="ai-content">
-                                    {aiResponse}
+                                <div className="ai-content ai-markdown"
+                                    dangerouslySetInnerHTML={{ __html: renderMarkdown(aiResponse) }}
+                                >
+                                    {}
                                 </div>
                             </div>
                         )}
