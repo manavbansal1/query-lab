@@ -8,6 +8,7 @@ import { sampleQueries, databaseOptions } from '@/data/SampleQueries';
 import { FaPlay, FaTrash, FaDatabase, FaEye, FaRobot, FaTimes } from 'react-icons/fa';
 import { createSampleDatabase, createEmptyDatabase, executeQuery, getDatabaseSchema } from "@/lib/sqlite-manager";
 import Editor from "@monaco-editor/react";
+import '../styles/AiResponse.css';
 
 const QueryTab = () => {
     

@@ -1,0 +1,177 @@
+.ai-markdown {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.ai-markdown h1,
+.ai-markdown h2,
+.ai-markdown h3,
+.ai-markdown h4,
+.ai-markdown h5,
+.ai-markdown h6 {
+    color: #531294;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.ai-markdown h1 { font-size: 1.5rem; }
+.ai-markdown h2 { font-size: 1.3rem; }
+.ai-markdown h3 { font-size: 1.15rem; }
+.ai-markdown h4 { font-size: 1.05rem; }
+.ai-markdown h5 { font-size: 1rem; }
+.ai-markdown h6 { font-size: 0.95rem; }
+
+.ai-markdown h1:first-child,
+.ai-markdown h2:first-child,
+.ai-markdown h3:first-child {
+    margin-top: 0;
+}
+
+.ai-markdown p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: #374151;
+}
+
+.ai-markdown ul,
+.ai-markdown ol {
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.ai-markdown li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: #000000;
+}
+
+.ai-markdown ul {
+    list-style-type: disc;
+}
+
+.ai-markdown ol {
+    list-style-type: decimal;
+}
+
+.ai-markdown pre {
+    background: #3d0472;
+    color: #e7e6e6;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 500 !important;
+    line-height: 1.5;
+}
+
+.ai-markdown code {
+    background: #f3f4f6;
+    color: #dc2626;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.ai-markdown pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* Blockquotes */
+.ai-markdown blockquote {
+    border-left: 4px solid #531294;
+    padding-left: 1rem;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    color: #6b7280;
+    font-style: italic;
+}
+
+/* Links */
+.ai-markdown a {
+    color: #531294;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.ai-markdown a:hover {
+    color: #6b1bb8;
+}
+
+/* Tables */
+.ai-markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.ai-markdown th,
+.ai-markdown td {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+}
+
+.ai-markdown th {
+    background: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+}
+
+.ai-markdown tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+/* Horizontal Rule */
+.ai-markdown hr {
+    border: none;
+    border-top: 2px solid #e5e7eb;
+    margin: 1.5rem 0;
+}
+
+/* Strong and Emphasis */
+.ai-markdown strong {
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.ai-markdown em {
+    font-style: italic;
+}
+
+/* Images (if any) */
+.ai-markdown img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin: 1rem 0;
+}
+
+/* Inline code within lists */
+.ai-markdown li code {
+    background: #f3f4f6;
+    color: #dc2626;
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+/* Task lists (GitHub style) */
+.ai-markdown input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Better spacing for nested lists */
+.ai-markdown ul ul,
+.ai-markdown ol ul,
+.ai-markdown ul ol,
+.ai-markdown ol ol {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
