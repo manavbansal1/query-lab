@@ -1,14 +1,13 @@
-// src/components/UnderConstruction.jsx
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
-import { FaTools, FaRocket, FaArrowLeft } from 'react-icons/fa';
+import { FaTools, FaRocket, FaArrowLeft, FaHeart } from 'react-icons/fa';
 import '../styles/UnderConstruction.css';
 
 const UnderConstruction = ({ 
   title = "Under Construction", 
-  message = "We're working hard to bring you something amazing!",
+  message = "I'm working hard to bring you something amazing!",
   estimatedTime = "Coming Soon"
 }) => {
   return (
@@ -31,9 +30,19 @@ const UnderConstruction = ({
           <span className="badge-text">{estimatedTime}</span>
         </div>
 
+        {/* Solo Developer Note */}
+        <div className="solo-dev-note">
+          <FaHeart className="heart-icon" />
+          <p>
+            <strong>Built by a solo developer</strong><br />
+            QueryLab is a passion project built in my free time. 
+            Your patience and support mean the world! 🙏
+          </p>
+        </div>
+
         {/* Features Coming */}
         <div className="coming-features">
-          <h3>What to Expect:</h3>
+          <h3>What's Coming:</h3>
           <ul>
             <li>✨ Comprehensive guides and tutorials</li>
             <li>📚 Interactive code examples</li>
@@ -53,6 +62,10 @@ const UnderConstruction = ({
           </Link>
         </div>
 
+        {/* Support Note */}
+        <div className="support-note">
+          <p>Want to help? ⭐ Star on GitHub or share with friends!</p>
+        </div>
       </div>
     </div>
   );
