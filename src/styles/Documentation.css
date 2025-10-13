@@ -91,3 +91,133 @@
     box-shadow: 0 4px 12px rgba(83, 18, 148, 0.3);
     transform: translateY(-2px);
 }
+
+.docs-main {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.docs-section {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #531294 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-card h3 {
+    color: #531294;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.info-card p {
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.info-card.highlight {
+    background: linear-gradient(135deg, #fef3f2 0%, #fee2e2 100%);
+    border-color: #fecaca;
+}
+
+.info-card.highlight h3 {
+    color: #dc2626;
+}
+
+.numbered-list {
+    list-style: none;
+    counter-reset: item;
+    padding-left: 0;
+}
+
+.numbered-list li {
+    counter-increment: item;
+    margin-bottom: 1rem;
+    padding-left: 2.5rem;
+    position: relative;
+    color: #374151;
+    line-height: 1.7;
+}
+
+.numbered-list li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.numbered-list li strong {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.feature-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    border-color: #531294;
+    box-shadow: 0 8px 20px rgba(83, 18, 148, 0.15);
+    transform: translateY(-4px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: #531294;
+    margin-bottom: 1rem;
+}
+
+.feature-card h4 {
+    color: #1f2937;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}

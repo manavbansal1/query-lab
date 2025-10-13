@@ -34,7 +34,7 @@ const GettingStarted = () => (
           <strong>Execute:</strong> Click "Execute Query" to run your code and see results
         </li>
         <li>
-          <strong>Get Help:</strong> If you encounter errors, use the AI-powered help feature
+          <strong>Get Help:</strong> If you encounter errors, use the AI powered help feature
         </li>
       </ol>
     </div>
@@ -52,7 +52,7 @@ const GettingStarted = () => (
       </div>
       <div className="feature-card">
         <FaLightbulb className="feature-icon" />
-        <h4>AI-Powered Help</h4>
+        <h4>AI Powered Help</h4>
         <p>Get intelligent explanations for query errors</p>
       </div>
       <div className="feature-card">
