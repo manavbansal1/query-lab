@@ -1,18 +1,16 @@
-'use client'
-import React, {useState} from 'react'
-import { FaDatabase, FaCode, FaLightbulb, FaBook, FaRocket, FaSearch, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+'use client';
+
+import React, { useState } from 'react';
+import { FaDatabase, FaCode, FaLightbulb, FaBook, FaRocket, FaSearch } from 'react-icons/fa';
+import GettingStarted from './docs/GettingStarted.jsx';
+import SQLGuide from './docs/SQLGuide.jsx';
+import MongoDBGuide from './docs/MongoDBGuide.jsx';
+import Examples from './docs/Examples.jsx';
+import TipsAndTricks from './docs/TipsAndTricks.jsx';
 import '../styles/Documentation.css'
 
 const Documentation = () => {
   const [activeTab, setActiveTab] = useState('getting-started');
-  const [expandedSections, setExpandedSections] = useState({});
-
-  const toggleSection = (sectionId) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }));
-  };
 
   return (
     <div className="docs-container">
@@ -68,27 +66,18 @@ const Documentation = () => {
             Tips & Tricks
           </button>
         </div>
-    </div>
-    </div>
-  )
-}
 
-const CollapsibleSection = ({ id, title, children, isExpanded, toggle }) => (
-  <div className="collapsible-section">
-    <button 
-      className={`collapsible-header ${isExpanded ? 'active' : ''}`}
-      onClick={() => toggle(id)}
-    >
-      <span>{title}</span>
-      {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
-    </button>
-    {isExpanded && (
-      <div className="collapsible-content">
-        {children}
+        {/* Content Sections */}
+        <div className="docs-main">
+          {activeTab === 'getting-started' && <GettingStarted />}
+          {activeTab === 'sql' && <SQLGuide />}
+          {activeTab === 'mongodb' && <MongoDBGuide />}
+          {activeTab === 'examples' && <Examples />}
+          {activeTab === 'tips' && <TipsAndTricks />}
+        </div>
       </div>
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
-
-export default Documentation
+export default Documentation;
