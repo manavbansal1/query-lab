@@ -10,6 +10,7 @@
     padding-top: 100px;
 }
 
+/* Hero Section */
 .docs-hero {
     background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
     border-radius: 20px;
@@ -46,6 +47,7 @@
     margin: 0;
 }
 
+/* Navigation Tabs */
 .docs-nav {
     display: flex;
     gap: 0.5rem;
@@ -90,6 +92,7 @@
     transform: translateY(-2px);
 }
 
+/* Main Content */
 .docs-main {
     background: white;
     border-radius: 12px;
@@ -111,6 +114,7 @@
     margin-bottom: 2rem;
 }
 
+/* Info Cards */
 .info-card {
     background: #f9fafb;
     border: 2px solid #e5e7eb;
@@ -141,6 +145,7 @@
     color: #dc2626;
 }
 
+/* Lists */
 .numbered-list {
     list-style: none;
     counter-reset: item;
@@ -221,6 +226,7 @@
     margin: 0;
 }
 
+/* Collapsible Sections */
 .collapsible-section {
     margin-bottom: 1.5rem;
     border: 2px solid #e5e7eb;
@@ -284,6 +290,7 @@
     margin-bottom: 1rem;
 }
 
+/* Code Blocks */
 .code-block {
     background: #1e1e1e;
     border-radius: 8px;
@@ -319,6 +326,7 @@
     background: #6b1bb8;
 }
 
+/* Example Cards */
 .example-card {
     background: white;
     border: 2px solid #e5e7eb;
@@ -363,6 +371,7 @@
     letter-spacing: 0.5px;
 }
 
+/* Tip Cards */
 .tip-card {
     display: flex;
     gap: 1.5rem;
@@ -592,7 +601,433 @@
     background: #9ca3af;
 }
 
+/* Selection Color */
 ::selection {
     background: rgba(83, 18, 148, 0.2);
     color: #111827;
+}
+
+::-moz-selection {
+    background: rgba(83, 18, 148, 0.2);
+    color: #111827;
+}
+/* Examples Section Specific Styles */
+
+.examples-section {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.examples-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+/* Example Selector */
+.example-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.example-selector-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 3px solid #e5e7eb;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.example-selector-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.example-selector-btn.active {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+    box-shadow: 0 8px 20px rgba(83, 18, 148, 0.15);
+    transform: translateY(-4px);
+}
+
+.selector-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.selector-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.selector-text strong {
+    font-size: 1.1rem;
+    color: #1f2937;
+}
+
+.selector-text small {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* Scenarios Container */
+.scenarios-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* Scenario Card */
+.scenario-card {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.scenario-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    border-color: #d1d5db;
+}
+
+/* Scenario Header */
+.scenario-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.scenario-number {
+    width: 48px;
+    height: 48px;
+    background: #531294;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(83, 18, 148, 0.3);
+}
+
+.scenario-title-block {
+    flex: 1;
+}
+
+.scenario-title-block h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.scenario-title-block p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Code Comparison */
+.code-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.code-panel {
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.sql-panel .panel-header {
+    background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
+}
+
+.mongo-panel .panel-header {
+    background: linear-gradient(135deg, #6b1bb8 0%, #8b5cf6 100%);
+}
+
+.panel-header svg {
+    font-size: 1.25rem;
+}
+
+.code-panel .code-block {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+}
+
+.code-panel .code-block pre {
+    padding: 1.5rem;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-height: 400px;
+    overflow-y: auto;
+    flex: 1;
+    background: #1e1e1e;
+}
+
+/* Result Box */
+.result-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    border: 2px solid #c4b5fd;
+    border-left: 4px solid #8b5cf6;
+    border-radius: 10px;
+    font-size: 0.95rem;
+}
+
+.result-box svg {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    color: #6b1bb8;
+}
+
+.result-box strong {
+    color: #531294;
+}
+
+.result-box span {
+    color: #6b1bb8;
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.examples-cta {
+    margin-top: 3rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(83, 18, 148, 0.3);
+}
+
+.cta-content {
+    text-align: center;
+    color: white;
+}
+
+.cta-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.cta-content h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.75rem 0;
+    color: white;
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    margin: 0 0 2rem 0;
+    opacity: 0.95;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: #531294;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    color: #531294;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .code-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .examples-intro {
+        font-size: 1rem;
+    }
+
+    .example-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .example-selector-btn {
+        padding: 1rem;
+    }
+
+    .selector-icon {
+        font-size: 1.75rem;
+    }
+
+    .selector-text strong {
+        font-size: 1rem;
+    }
+
+    .scenario-card {
+        padding: 1.5rem;
+    }
+
+    .scenario-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .scenario-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .scenario-title-block h3 {
+        font-size: 1.25rem;
+    }
+
+    .code-comparison {
+        gap: 1rem;
+    }
+
+    .code-panel .code-block pre {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
+    .result-box {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .examples-cta {
+        padding: 2rem 1.5rem;
+    }
+
+    .cta-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .cta-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .scenario-card {
+        padding: 1rem;
+    }
+
+    .panel-header {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .code-panel .code-block pre {
+        font-size: 0.8rem;
+        padding: 0.75rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Code Scrollbar Styling */
+.code-panel .code-block pre::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.code-panel .code-block pre::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.code-panel .code-block pre::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-radius: 4px;
+}
+
+.code-panel .code-block pre::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Fix text selection in code blocks */
+.code-panel .code-block pre::selection,
+.code-panel .code-block pre *::selection,
+pre::selection,
+pre *::selection,
+code::selection {
+    background: #8b5cf6;
+    color: #ffffff;
+}
+
+.code-panel .code-block pre::-moz-selection,
+.code-panel .code-block pre *::-moz-selection,
+pre::-moz-selection,
+pre *::-moz-selection,
+code::-moz-selection {
+    background: #8b5cf6;
+    color: #ffffff;
 }
