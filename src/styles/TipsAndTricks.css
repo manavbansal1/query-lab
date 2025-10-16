@@ -1,5 +1,3 @@
-/* Tips & Tricks Section Styling */
-
 .tips-section {
     animation: fadeIn 0.4s ease-out;
 }
@@ -26,7 +24,6 @@
     line-height: 1.7;
 }
 
-/* Category Filter Buttons - Navbar Style */
 .tips-categories {
     display: flex;
     flex-wrap: wrap;
@@ -121,7 +118,6 @@
     opacity: 1;
 }
 
-/* Tip Header */
 .tip-header-new {
     display: flex;
     align-items: flex-start;
@@ -154,7 +150,6 @@
     flex-grow: 1;
 }
 
-/* Tip Description */
 .tip-description {
     color: #6b7280;
     font-size: 1.05rem;
@@ -174,7 +169,7 @@
 .tip-details h4 {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #dc2626;
+    color: #58279e;
     margin: 0 0 0.875rem 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -193,19 +188,18 @@
     display: flex;
     align-items: flex-start;
     gap: 0.625rem;
-    color: #374151;
+    color: #330e53;
     font-size: 0.95rem;
     line-height: 1.5;
 }
 
 .check-icon {
-    color: #10b981;
+    color: #7010b9;
     flex-shrink: 0;
     margin-top: 0.15rem;
     font-size: 1rem;
 }
 
-/* Tip Examples - Side-by-Side on Desktop */
 .tip-examples {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -237,6 +231,8 @@
 
 .tip-example-panel pre {
     background: #1e1e1e;
+    width: 100%;
+    height: 100%;
     color: #e5e7eb;
     padding: 1rem;
     margin: 0;
@@ -333,7 +329,7 @@
 
 .reference-card ol li,
 .reference-card ul li {
-    color: #374151;
+    color: #220945;
     font-size: 0.95rem;
     line-height: 1.5;
     padding-left: 1.75rem;
@@ -348,7 +344,7 @@
     content: counter(step-counter);
     position: absolute;
     left: 0;
-    background: #8b5cf6;
+    background: #7010b9;
     color: white;
     width: 1.5rem;
     height: 1.5rem;
@@ -373,7 +369,6 @@
     font-size: 1.1rem;
 }
 
-/* Learning Path CTA */
 .learning-path-cta {
     background: linear-gradient(135deg, #531294 0%, #6b1bb8 100%);
     border-radius: 16px;
@@ -452,7 +447,7 @@
     transform: translateY(-2px);
 }
 
-/* Animations */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -491,7 +486,6 @@
     background: #6b7280;
 }
 
-/* Selection Styling */
 .tip-example-panel pre::selection,
 .tip-example-panel pre *::selection {
     background: #8b5cf6;
@@ -504,7 +498,6 @@
     color: #ffffff;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .section-title {
         font-size: 1.75rem;
