@@ -443,7 +443,7 @@
 }
 
 .cta-button.secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgb(255, 255, 255);
     transform: translateY(-2px);
 }
 
