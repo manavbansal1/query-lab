@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FaLightbulb, FaRocket, FaCode, FaDatabase, FaChartLine, FaBolt, FaGraduationCap, FaCheckCircle } from 'react-icons/fa';
+import '../../styles/TipsAndTricks.css'
 
 const TipsAndTricks = () => {
   const [activeCategory, setActiveCategory] = useState('all');
