@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FaLightbulb, FaRocket, FaCode, FaDatabase, FaChartLine, FaBolt, FaGraduationCap, FaCheckCircle } from 'react-icons/fa';
+import { FaLightbulb, FaRocket, FaCode, FaDatabase, FaBolt, FaGraduationCap, FaCheckCircle } from 'react-icons/fa';
 import '../../styles/TipsAndTricks.css'
 
-const TipsAndTricks = () => {
+const TipsAndTricks = ({ setActiveTab }) => {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const categories = [
@@ -32,7 +32,7 @@ const TipsAndTricks = () => {
         mongodb: 'db.users.find().limit(10)'
       },
       level: 'Beginner',
-      color: '#10b981'
+      color: '#4a14a0ff'
     },
     {
       category: 'beginner',
@@ -45,7 +45,7 @@ const TipsAndTricks = () => {
         'Check data types'
       ],
       level: 'Beginner',
-      color: '#10b981'
+      color: '#4a14a0ff'
     },
     {
       category: 'beginner',
@@ -58,7 +58,7 @@ const TipsAndTricks = () => {
         'Save successful queries for reference'
       ],
       level: 'Beginner',
-      color: '#10b981'
+      color: '#4a14a0ff'
     },
     {
       category: 'beginner',
@@ -75,7 +75,7 @@ const TipsAndTricks = () => {
         mongodb: '// Limit results for testing\ndb.orders.find({ \n  amount: { $gt: 100 } \n}).limit(10)'
       },
       level: 'Beginner',
-      color: '#10b981'
+      color: '#4a14a0ff'
     },
 
     // Intermediate Tips
@@ -94,7 +94,7 @@ const TipsAndTricks = () => {
         mongodb: '// Use aggregation lookup\ndb.orders.aggregate([\n  {\n    $lookup: {\n      from: "users",\n      localField: "user_id",\n      foreignField: "_id",\n      as: "user_info"\n    }\n  }\n])'
       },
       level: 'Intermediate',
-      color: '#3b82f6'
+      color: '#5c1884ff'
     },
     {
       category: 'intermediate',
@@ -111,7 +111,7 @@ const TipsAndTricks = () => {
         mongodb: 'db.users.aggregate([\n  {\n    $project: {\n      customer_name: "$name",\n      email: "$email"\n    }\n  }\n])'
       },
       level: 'Intermediate',
-      color: '#3b82f6'
+      color: '#5c1884ff'
     },
     {
       category: 'intermediate',
@@ -128,7 +128,7 @@ const TipsAndTricks = () => {
         mongodb: 'db.products.aggregate([\n  {\n    $group: {\n      _id: "$category",\n      products: { $sum: 1 },\n      avgPrice: { $avg: "$price" }\n    }\n  },\n  { $sort: { products: -1 } }\n])'
       },
       level: 'Intermediate',
-      color: '#3b82f6'
+      color: '#5c1884ff'
     },
     {
       category: 'intermediate',
@@ -144,7 +144,7 @@ const TipsAndTricks = () => {
         'LIMIT restricts output'
       ],
       level: 'Intermediate',
-      color: '#3b82f6'
+      color: '#5c1884ff'
     },
 
     // Advanced Tips
@@ -229,7 +229,7 @@ const TipsAndTricks = () => {
         mongodb: '// Good: Match early\ndb.products.aggregate([\n  { $match: { stock: { $gt: 0 } } },  // Filter early\n  { $group: { _id: "$category", avgPrice: { $avg: "$price" } } }\n])'
       },
       level: 'Performance',
-      color: '#f59e0b'
+      color: '#520c72ff'
     },
     {
       category: 'performance',
@@ -246,7 +246,7 @@ const TipsAndTricks = () => {
         mongodb: '// Bad\ndb.users.find()\n\n// Good  \ndb.users.find({}, { name: 1, email: 1 })'
       },
       level: 'Performance',
-      color: '#f59e0b'
+      color: '#520c72ff'
     },
     {
       category: 'performance',
@@ -259,7 +259,7 @@ const TipsAndTricks = () => {
         'Pagination for full data'
       ],
       level: 'Performance',
-      color: '#f59e0b'
+      color: '#520c72ff'
     },
     {
       category: 'performance',
@@ -272,7 +272,7 @@ const TipsAndTricks = () => {
         'Test query performance'
       ],
       level: 'Performance',
-      color: '#f59e0b'
+      color: '#520c72ff'
     }
   ];
 
@@ -359,8 +359,10 @@ const TipsAndTricks = () => {
             <a href="/" className="cta-button primary">
               <FaCode /> Open Query Editor
             </a>
-            <a href="/documentation" className="cta-button secondary">
-              <FaDatabase /> View Examples
+            <a >
+              <button onClick={() => {setActiveTab('examples'); window.scrollTo(0, 0); }} className="cta-button secondary">
+                <FaDatabase /> View Examples
+              </button>
             </a>
           </div>
         </div>

@@ -73,7 +73,7 @@ const Documentation = () => {
           {activeTab === 'sql' && <SQLGuide />}
           {activeTab === 'mongodb' && <MongoDBGuide />}
           {activeTab === 'examples' && <Examples />}
-          {activeTab === 'tips' && <TipsAndTricks />}
+          {activeTab === 'tips' && <TipsAndTricks setActiveTab={setActiveTab} />}
         </div>
       </div>
     </div>
