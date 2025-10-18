@@ -213,6 +213,13 @@ querylab/
 │   │   ├── page.jsx
 │   │   └── globals.css
 │   ├── components/
+│   │   ├── docs/
+│   │   │   ├── CollapsibleSection.jsx
+│   │   │   ├── Examples.jsx
+│   │   │   ├── GettingStarted.jsx
+│   │   │   ├── MongoDBGuide.jsx
+│   │   │   ├── SQLGuide.jsx
+│   │   │   └── TipsAndTricks.jsx
 │   │   ├── ClientLayout.jsx          # Client-side wrapper
 │   │   ├── Contact.jsx               # Contact modal
 │   │   ├── Navbar.jsx                # Navigation bar
