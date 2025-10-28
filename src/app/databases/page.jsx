@@ -3,10 +3,70 @@ import React, {useState} from 'react';
 import { FaDatabase, FaUsers, FaShoppingCart, FaBlog } from 'react-icons/fa';
 import '../../styles/Documentation.css'
 
-const DatabasesPage = () => {
+const databases = {
+  users: {
+    name: 'Users & Orders',
+    icon: <FaUsers />,
+    description: 'Master fundamental database relationships with user accounts and purchase history',
+    sqlSchema: {
+      users: {
+        columns: [
+          { name: 'id', type: 'INTEGER', isPK: true },
+          { name: 'name', type: 'TEXT' },
+          { name: 'email', type: 'TEXT' },
+          { name: 'age', type: 'INTEGER' },
+        ],
+        rows: 5
+      },
+      orders: {
+        columns: [
+          { name: 'id', type: 'INTEGER', isPK: true },
+          { name: 'user_id', type: 'INTEGER', isFK: true },
+          { name: 'product', type: 'TEXT' },
+          { name: 'amount', type: 'DECIMAL' },
+        ],
+        rows: 8
+      }
+    }
+  },
+  blog: {
+    name: 'Blog Platform',
+    icon: <FaBlog />,
+    description: 'Explore content management patterns with posts and comments',
+    sqlSchema: {
+      posts: {
+        columns: [
+          { name: 'id', type: 'INTEGER', isPK: true },
+          { name: 'title', type: 'TEXT' },
+          { name: 'author', type: 'TEXT' },
+          { name: 'views', type: 'INTEGER' },
+        ],
+        rows: 3
+      }
+    }
+  },
+  ecommerce: {
+    name: 'E-commerce Store',
+    icon: <FaShoppingCart />,
+    description: 'Analyze product catalogs and customer data',
+    sqlSchema: {
+      products: {
+        columns: [
+          { name: 'id', type: 'INTEGER', isPK: true },
+          { name: 'name', type: 'TEXT' },
+          { name: 'price', type: 'DECIMAL' },
+          { name: 'stock', type: 'INTEGER' },
+        ],
+        rows: 5
+      }
+    }
+  }
+};
 
-  const [selectedDb, setSelectedDb] = useState('users');
+const DatabasesPage = () => {
   
+  const [selectedDb, setSelectedDb] = useState('users');
+  const currentDb = databases[selectedDb];
   return (
     <div className="docs-container">
       <div className="docs-content">
@@ -48,6 +108,13 @@ const DatabasesPage = () => {
             E-commerce Store
           </button>
         </div>
+        <div className="docs-main">
+        <div className="docs-section">
+          <h2>{currentDb.name}</h2>
+          <p>{currentDb.description}</p>
+          {/* Schema display coming next... */}
+        </div>
+      </div>
       </div>
     </div>
   );
