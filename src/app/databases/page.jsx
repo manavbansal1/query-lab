@@ -1,9 +1,12 @@
 'use client';
-import React from 'react';
-import { FaDatabase } from 'react-icons/fa';
+import React, {useState} from 'react';
+import { FaDatabase, FaUsers, FaShoppingCart, FaBlog } from 'react-icons/fa';
 import '../../styles/Documentation.css'
 
 const DatabasesPage = () => {
+
+  const [selectedDb, setSelectedDb] = useState('users');
+  
   return (
     <div className="docs-container">
       <div className="docs-content">
@@ -21,9 +24,29 @@ const DatabasesPage = () => {
           </div>
         </div>
         
-        {/* More content coming... */}
-        <div className="docs-main">
-          <p>Database selector coming next...</p>
+        {/* Navigation Tabs */}
+        <div className="docs-nav">
+          <button
+            className={`docs-nav-btn ${selectedDb === 'users' ? 'active' : ''}`}
+            onClick={() => setSelectedDb('users')}
+          >
+            <FaUsers />
+            Users & Orders
+          </button>
+          <button
+            className={`docs-nav-btn ${selectedDb === 'blog' ? 'active' : ''}`}
+            onClick={() => setSelectedDb('blog')}
+          >
+            <FaBlog />
+            Blog Platform
+          </button>
+          <button
+            className={`docs-nav-btn ${selectedDb === 'ecommerce' ? 'active' : ''}`}
+            onClick={() => setSelectedDb('ecommerce')}
+          >
+            <FaShoppingCart />
+            E-commerce Store
+          </button>
         </div>
       </div>
     </div>
