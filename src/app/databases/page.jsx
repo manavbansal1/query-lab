@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { FaDatabase, FaUsers, FaShoppingCart, FaBlog } from 'react-icons/fa';
 import '../../styles/Documentation.css'
+import '../../styles/Databases.css'
 
 const databases = {
   users: {
@@ -112,7 +113,7 @@ const DatabasesPage = () => {
         <div className="docs-section">
           <h2>{currentDb.name}</h2>
           <p>{currentDb.description}</p>
-          {/* Schema display coming next... */}
+          {/* Schema display next... */}
         </div>
       </div>
       </div>
