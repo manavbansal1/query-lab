@@ -115,6 +115,27 @@ const DatabasesPage = () => {
           <p>{currentDb.description}</p>
           {/* Schema display next... */}
         </div>
+
+        <h2 className="section-title">SQL Schema (SQLite)</h2>
+
+        {Object.entries(currentDb.sqlSchema).map(([tableName, tableInfo]) => (
+          <div key={tableName} className="schema-card">
+            <div className="schema-header">
+              <strong>{tableName}</strong>
+              <span className="badge badge-rows">{tableInfo.rows} rows</span>
+            </div>
+            <div className="column-list">
+              {tableInfo.columns.map((col, idx) => (
+                <div key={idx} className="column-item">
+                  <code>{col.name}</code>
+                  <span className="column-type">{col.type}</span>
+                  {col.isPK && <span className="badge badge-pk">PRIMARY KEY</span>}
+                  {col.isFK && <span className="badge badge-fk">FOREIGN KEY</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
       </div>
     </div>

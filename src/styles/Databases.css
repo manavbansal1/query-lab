@@ -27,3 +27,45 @@
     font-size: 0.85rem;
     font-weight: 600;
 }
+
+.badge-rows {
+    background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+    color: #6b1bb8;
+}
+
+.badge-pk {
+    background: #ebd3fa;
+    color: #4d127e;
+}
+
+.badge-fk {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.column-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.column-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.column-item code {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.column-type {
+    color: #6b7280;
+    font-size: 0.875rem;
+    font-style: italic;
+}
