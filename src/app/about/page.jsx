@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { FaHeart, FaLightbulb, FaCode, FaGraduationCap, FaRocket, FaGithub, FaEnvelope, FaBook } from 'react-icons/fa';
+import { FaHeart, FaLightbulb, FaCode, FaRocket, FaGithub, FaEnvelope, FaBook } from 'react-icons/fa';
 import Link from 'next/link';
 import '../../styles/Documentation.css'
 import '../../styles/About.css'
@@ -111,8 +111,12 @@ const Page = () => {
             <h2 className="section-title" style={{ marginTop: '3rem' }}>About the Creator</h2>
             
             <div className="creator-card">
-              <div className="creator-avatar">
-                <FaGraduationCap />
+              <div className="creator-avatar" style={{ padding: 0, overflow: 'hidden' }}>
+                <img 
+                  src="/ManavB.jpg" 
+                  alt="Manav Bansal" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} 
+                />
               </div>
               <div className="creator-content">
                 <h3>Manav Bansal</h3>
