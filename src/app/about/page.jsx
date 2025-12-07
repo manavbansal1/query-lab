@@ -4,6 +4,7 @@ import React from 'react';
 import { FaHeart, FaLightbulb, FaCode, FaGraduationCap, FaRocket, FaGithub, FaEnvelope, FaBook } from 'react-icons/fa';
 import Link from 'next/link';
 import '../../styles/Documentation.css'
+import '../../styles/About.css'
 
 const Page = () => {
   return (
